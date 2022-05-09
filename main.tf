@@ -395,7 +395,7 @@ resource "aws_subnet" "private" {
         element(var.azs, count.index),
       )
     },
-    var.private_subnet_names > count.index ? {
+    length(var.private_subnet_names) > count.index ? {
       "Name" = format(
         "%s", element(var.private_subnet_names, count.index)
       )
