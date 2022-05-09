@@ -166,6 +166,12 @@ variable "elasticache_subnet_suffix" {
   default     = "elasticache"
 }
 
+variable "private_subnet_names" {
+  description = "List of names for each private subnet."
+  type        = list(string)
+  default     = []
+}
+
 variable "public_subnets" {
   description = "A list of public subnets inside the VPC"
   type        = list(string)
