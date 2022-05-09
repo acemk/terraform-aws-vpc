@@ -368,6 +368,11 @@ resource "aws_subnet" "public" {
         element(var.azs, count.index),
       )
     },
+    length(var.public_subnet_names) > count.index ? { # Skip if fewer names then the number of subnets.
+      "Name" = format(
+        "%s", element(var.public_subnet_names, count.index)
+      )
+    } : {},
     var.tags,
     var.public_subnet_tags,
   )
@@ -395,7 +400,7 @@ resource "aws_subnet" "private" {
         element(var.azs, count.index),
       )
     },
-    length(var.private_subnet_names) > count.index ? {
+    length(var.private_subnet_names) > count.index ? { # Skip if fewer names then the number of subnets.
       "Name" = format(
         "%s", element(var.private_subnet_names, count.index)
       )
