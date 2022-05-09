@@ -395,11 +395,11 @@ resource "aws_subnet" "private" {
         element(var.azs, count.index),
       )
     },
-    {
+    var.private_subnet_names > count.index ? {
       "Name" = format(
         "%s", element(var.private_subnet_names, count.index)
       )
-    },
+    } : {},
     var.tags,
     var.private_subnet_tags,
   )
