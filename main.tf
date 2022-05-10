@@ -4,6 +4,7 @@ locals {
     length(var.elasticache_subnets),
     length(var.database_subnets),
     length(var.redshift_subnets),
+    length(var.public_subnets),
   )
   nat_gateway_count = var.single_nat_gateway ? 1 : var.one_nat_gateway_per_az ? length(var.azs) : local.max_subnet_length
 
@@ -187,7 +188,7 @@ resource "aws_default_route_table" "default" {
 ################################################################################
 
 resource "aws_route_table" "public" {
-  count = local.create_vpc && length(var.public_subnets) > 0 ? 1 : 0
+  count = local.create_vpc && length(var.public_subnets) > 0 ? (var.single_public_gateway ? 1  : length(var.public_subnets)) : 0
 
   vpc_id = local.vpc_id
 
