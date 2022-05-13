@@ -1262,7 +1262,7 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "this" {
 
   transit_gateway_id = var.tgw_id
   vpc_id             = aws_vpc.this[0].id
-  subnet_ids         = each.id
+  subnet_ids         = each
 
   #dns_support                                     = try(each.value.dns_support, true) ? "enable" : "disable"
   #ipv6_support                                    = try(each.value.ipv6_support, false) ? "enable" : "disable"
