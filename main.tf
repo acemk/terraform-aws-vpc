@@ -1258,7 +1258,7 @@ resource "aws_default_vpc" "this" {
 # Transit Gateway VPC Attachment
 ################################################################################
 resource "aws_ec2_transit_gateway_vpc_attachment" "this" {
-  count = var.tgw_id != null ? 1 : 0;
+  count = var.tgw_id != null ? 1 : 0
 
   transit_gateway_id = var.tgw_id
   vpc_id             = aws_vpc.this[0].id
