@@ -1204,3 +1204,9 @@ variable "flow_log_per_hour_partition" {
   type        = bool
   default     = false
 }
+
+variable "tgw_id" {
+  description = "Transit gateway to attach to VPC public subnets."
+  type = string
+  default = null
+}
